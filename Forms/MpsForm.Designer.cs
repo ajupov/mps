@@ -40,13 +40,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MpsForm));
             this.labelN = new System.Windows.Forms.Label();
             this.tupplesTable = new System.Windows.Forms.DataGridView();
-            this.lamda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.omega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.k = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.p = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.a = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelG = new System.Windows.Forms.Label();
             this.buttonGenerateTupples = new System.Windows.Forms.Button();
             this.groupBoxTupples = new System.Windows.Forms.GroupBox();
@@ -74,6 +67,13 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.groupBoxChart = new System.Windows.Forms.GroupBox();
+            this.lamda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.omega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.k = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.a = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tupplesTable)).BeginInit();
             this.groupBoxTupples.SuspendLayout();
             this.groupBoxParameters.SuspendLayout();
@@ -143,101 +143,6 @@
             this.tupplesTable.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.TupplesTableCellEndEdit);
             this.tupplesTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.TupplesTableUserAddedRow);
             this.tupplesTable.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.TupplesTableUserDeletedRow);
-            // 
-            // lamda
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N8";
-            this.lamda.DefaultCellStyle = dataGridViewCellStyle2;
-            this.lamda.HeaderText = "Интенсивность входного потока, λ";
-            this.lamda.MaxInputLength = 16;
-            this.lamda.Name = "lamda";
-            this.lamda.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.lamda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // mu
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N8";
-            this.mu.DefaultCellStyle = dataGridViewCellStyle3;
-            this.mu.HeaderText = "Интенсивность обслуживания, μ";
-            this.mu.MaxInputLength = 16;
-            this.mu.Name = "mu";
-            this.mu.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.mu.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.mu.Width = 90;
-            // 
-            // omega
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle4.Format = "N8";
-            dataGridViewCellStyle4.NullValue = null;
-            this.omega.DefaultCellStyle = dataGridViewCellStyle4;
-            this.omega.HeaderText = "Загрузка процессора, ω";
-            this.omega.MaxInputLength = 16;
-            this.omega.Name = "omega";
-            this.omega.ReadOnly = true;
-            this.omega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.omega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.omega.Width = 70;
-            // 
-            // k
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "D";
-            this.k.DefaultCellStyle = dataGridViewCellStyle5;
-            this.k.HeaderText = "Приоритет, k";
-            this.k.MaxInputLength = 16;
-            this.k.Name = "k";
-            this.k.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.k.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.k.Width = 70;
-            // 
-            // p
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.Format = "N8";
-            dataGridViewCellStyle6.NullValue = null;
-            this.p.DefaultCellStyle = dataGridViewCellStyle6;
-            this.p.HeaderText = "Вероятность приостановки обслуживания, P";
-            this.p.MaxInputLength = 16;
-            this.p.Name = "p";
-            this.p.ReadOnly = true;
-            this.p.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.p.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.p.Width = 90;
-            // 
-            // c
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle7.Format = "N8";
-            dataGridViewCellStyle7.NullValue = null;
-            this.c.DefaultCellStyle = dataGridViewCellStyle7;
-            this.c.HeaderText = "Среднее число процессоров, C";
-            this.c.MaxInputLength = 16;
-            this.c.Name = "c";
-            this.c.ReadOnly = true;
-            this.c.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.c.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.c.Width = 90;
-            // 
-            // a
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.Format = "N0";
-            dataGridViewCellStyle8.NullValue = null;
-            this.a.DefaultCellStyle = dataGridViewCellStyle8;
-            this.a.HeaderText = "Пропускная способность, A";
-            this.a.MaxInputLength = 16;
-            this.a.Name = "a";
-            this.a.ReadOnly = true;
-            this.a.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.a.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.a.Width = 90;
             // 
             // labelG
             // 
@@ -526,6 +431,101 @@
             this.groupBoxChart.TabStop = false;
             this.groupBoxChart.Text = "График";
             // 
+            // lamda
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N8";
+            this.lamda.DefaultCellStyle = dataGridViewCellStyle2;
+            this.lamda.HeaderText = "Интенсивность входного потока, λ";
+            this.lamda.MaxInputLength = 16;
+            this.lamda.Name = "lamda";
+            this.lamda.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.lamda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // mu
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N8";
+            this.mu.DefaultCellStyle = dataGridViewCellStyle3;
+            this.mu.HeaderText = "Интенсивность обслуживания, μ";
+            this.mu.MaxInputLength = 16;
+            this.mu.Name = "mu";
+            this.mu.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.mu.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.mu.Width = 90;
+            // 
+            // omega
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.Format = "N8";
+            dataGridViewCellStyle4.NullValue = null;
+            this.omega.DefaultCellStyle = dataGridViewCellStyle4;
+            this.omega.HeaderText = "Загрузка процессора, ω";
+            this.omega.MaxInputLength = 16;
+            this.omega.Name = "omega";
+            this.omega.ReadOnly = true;
+            this.omega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.omega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.omega.Width = 70;
+            // 
+            // k
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "D";
+            this.k.DefaultCellStyle = dataGridViewCellStyle5;
+            this.k.HeaderText = "Приоритет, k";
+            this.k.MaxInputLength = 16;
+            this.k.Name = "k";
+            this.k.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.k.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.k.Width = 70;
+            // 
+            // p
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.Format = "N8";
+            dataGridViewCellStyle6.NullValue = null;
+            this.p.DefaultCellStyle = dataGridViewCellStyle6;
+            this.p.HeaderText = "Вероятность приостановки обслуживания, P";
+            this.p.MaxInputLength = 16;
+            this.p.Name = "p";
+            this.p.ReadOnly = true;
+            this.p.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.p.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.p.Width = 90;
+            // 
+            // c
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle7.Format = "N8";
+            dataGridViewCellStyle7.NullValue = null;
+            this.c.DefaultCellStyle = dataGridViewCellStyle7;
+            this.c.HeaderText = "Среднее число процессоров, C";
+            this.c.MaxInputLength = 16;
+            this.c.Name = "c";
+            this.c.ReadOnly = true;
+            this.c.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.c.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.c.Width = 90;
+            // 
+            // a
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.Format = "N8";
+            dataGridViewCellStyle8.NullValue = null;
+            this.a.DefaultCellStyle = dataGridViewCellStyle8;
+            this.a.HeaderText = "Пропускная способность, A";
+            this.a.MaxInputLength = 16;
+            this.a.Name = "a";
+            this.a.ReadOnly = true;
+            this.a.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.a.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.a.Width = 90;
+            // 
             // MpsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,6 +587,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBoxOverGammaFunction;
+        private System.Windows.Forms.Button buttonClear;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.GroupBox groupBoxChart;
         private System.Windows.Forms.DataGridViewTextBoxColumn lamda;
         private System.Windows.Forms.DataGridViewTextBoxColumn mu;
         private System.Windows.Forms.DataGridViewTextBoxColumn omega;
@@ -594,11 +599,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn p;
         private System.Windows.Forms.DataGridViewTextBoxColumn c;
         private System.Windows.Forms.DataGridViewTextBoxColumn a;
-        private System.Windows.Forms.Button buttonClear;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.GroupBox groupBoxChart;
     }
 }
 

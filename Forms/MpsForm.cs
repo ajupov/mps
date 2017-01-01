@@ -368,8 +368,10 @@ namespace Mps.Forms
                             // Попытаться получить измененные значения
 
                             // Если удалось получить
-                            if (double.TryParse(lamdaCell.Value.ToString(), out double outLamdaDoubleValue) &&
-                                double.TryParse(muCell.Value.ToString(), out double outMuDoubleValue))
+                            double outLamdaDoubleValue;
+                            double outMuDoubleValue;
+                            if (double.TryParse(lamdaCell.Value.ToString(), out outLamdaDoubleValue) &&
+                                double.TryParse(muCell.Value.ToString(), out outMuDoubleValue))
                             {
                                 // Установить значение
                                 var omegaCell = tupplesTable.Rows[e.RowIndex].Cells[(int)ColumnIndex.OmegaColumnIndex];
@@ -402,7 +404,8 @@ namespace Mps.Forms
                             {
                                 // Пропустить пустые ячейки приоритетов
                                 var kCell = row.Cells[(int) ColumnIndex.KColumnIndex];
-                                if (kCell?.Value == null || !int.TryParse(kCell.Value.ToString(), out int outTempIntValue))
+                                int outTempIntValue;
+                                if (kCell?.Value == null || !int.TryParse(kCell.Value.ToString(), out outTempIntValue))
                                 {
                                     continue;
                                 }
@@ -684,7 +687,8 @@ namespace Mps.Forms
         /// <returns>Вещественное значение ячейки</returns>
         private static double ParseDoubleFromCell(DataGridViewCell cell)
         {
-            double.TryParse(cell?.Value?.ToString(), out double outValue);
+            double outValue;
+            double.TryParse(cell?.Value?.ToString(), out outValue);
             return outValue;
         }
 
@@ -695,7 +699,8 @@ namespace Mps.Forms
         /// <returns>Целочисленное значение ячейки</returns>
         private static int ParseIntFromCell(DataGridViewCell cell)
         {
-            int.TryParse(cell?.Value?.ToString(), out int outValue);
+            int outValue;
+            int.TryParse(cell?.Value?.ToString(), out outValue);
             return outValue;
         }
 
@@ -738,10 +743,14 @@ namespace Mps.Forms
 
                 // Установить значения настроек
                 numericUpDownN.Value = fileModel.N;
+                numericUpDownG.Value = fileModel.Rows.Count;
                 checkBoxRandomTupples.Checked = fileModel.IsRandomTupples;
                 checkBoxRandomK.Checked = fileModel.IsRandomPriority;
                 checkBoxOverGammaFunction.Checked = fileModel.UseGammaFunction;
                 checkBoxOverGammaFunction.Checked = fileModel.UseGammaFunction;
+
+                // Очистить таблицу
+                tupplesTable.Rows.Clear();
 
                 // Установить список строк в таблицу
                 SetRows(fileModel.Rows);
@@ -810,16 +819,16 @@ namespace Mps.Forms
             }
             
             // Шаги графика
-            var graphicSteps = new SizeF((aMaxKMaxPoint.X - a0K0Point.X - gridSteps.Width) / maxKValue,
-                (a0K0Point.Y - aMaxKMaxPoint.Y) / maxAValue);
+            var graphicSteps = new SizeF((float) ((aMaxKMaxPoint.X - a0K0Point.X - gridSteps.Width) / maxKValue),
+                (float) ((a0K0Point.Y - aMaxKMaxPoint.Y) / maxAValue));
 
             // Точки рисования
             var points = new List<PointF>();
             foreach (var graphicPoint in graphicPoints)
             {
                 points.Add(new PointF(
-                    a0K0Point.X + graphicPoint.K * graphicSteps.Width,
-                    a0K0Point.Y - graphicPoint.A * graphicSteps.Height));
+                    (float) (a0K0Point.X + graphicPoint.K * graphicSteps.Width),
+                    (float) (a0K0Point.Y - graphicPoint.A * graphicSteps.Height)));
             }
 
             using (var pen = new Pen(Color.Red, 1))
@@ -829,7 +838,10 @@ namespace Mps.Forms
                 pen.EndCap = LineCap.Round;
 
                 // Нарисовать линии
-                graphics.DrawLines(pen, points.ToArray());
+                graphics.DrawLines(pen, points
+                    .Where(point => !float.IsInfinity(point.X) && !float.IsNaN(point.X)
+                        && !float.IsInfinity(point.Y) && !float.IsNaN(point.Y))
+                    .ToArray());
             }
         }
 
@@ -939,8 +951,8 @@ namespace Mps.Forms
                 .Select(dataGridViewRow => dataGridViewRow.Cells)
                 .Select(cells => new GraphicPoint
                 {
-                    K = ParseIntFromCell(cells[(int)ColumnIndex.KColumnIndex]),
-                    A = ParseIntFromCell(cells[(int)ColumnIndex.AColumnIndex])
+                    K = ParseDoubleFromCell(cells[(int)ColumnIndex.KColumnIndex]),
+                    A = ParseDoubleFromCell(cells[(int)ColumnIndex.AColumnIndex])
                 })
                 .Where(point => point.K > 0)
                 .OrderBy(point => point.K)

@@ -8,11 +8,11 @@
         /// <summary>
         /// Приоритет
         /// </summary>
-        public int K { get; set; }
+        public double K { get; set; }
 
         /// <summary>
         /// Пропускная способность
         /// </summary>
-        public int A { get; set; }
+        public double A { get; set; }
     }
 }

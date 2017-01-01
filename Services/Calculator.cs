@@ -38,11 +38,15 @@ namespace Mps.Services
                 // Омега
                 var omega = CalculateOmega(row.Lamda, row.Mu);
 
-                // Значение C предыдущей строки
-                var prevC = counter == 0 ? 0 : rows[counter - 1].C;
+                // Значение C предыдущих строк
+                double prevC = 0;
+                for (var i = 0; i < counter ; i++)
+                {
+                    prevC += rows[counter - 1].C;
+                }
 
                 // N - C
-                var nMisusPrevC = prevC > n ? 0 : n - prevC;
+                var nMisusPrevC = n - prevC;
 
                 // Числитель
                 var numerator = Math.Pow(omega, nMisusPrevC);
@@ -57,15 +61,13 @@ namespace Mps.Services
                 var denominator = denominatorLeftPart * denominatorRightPart;
 
                 // Значение P
-                var p = numerator / denominator;
-                row.P = p < 1 ? p : 1;
+                row.P = numerator / denominator;
 
                 // Значение С
-                var c = omega * (1 - row.P / 100);
-                row.C = c < n ? c : n;
+                row.C = omega * (1 - row.P);
 
                 // Значение A
-                row.A = (int) Math.Round((1 - row.P / 100) * row.Lamda);
+                row.A = (1 - row.P) * row.Lamda;
             }
         }
 
@@ -127,7 +129,7 @@ namespace Mps.Services
                 var numberInt = (int)Math.Round(number);
 
                 // Математики так решили
-                if (numberInt == 0 || numberInt == 1)
+                if (numberInt == 0 || numberInt == 1 || numberInt < 0)
                 {
                     return 1;
                 }

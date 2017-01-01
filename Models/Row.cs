@@ -41,6 +41,6 @@ namespace Mps.Models
         /// <summary>
         /// A
         /// </summary>
-        public int A { get; set; }
+        public double A { get; set; }
     }
 }
