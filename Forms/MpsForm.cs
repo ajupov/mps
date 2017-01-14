@@ -93,24 +93,6 @@ namespace Mps.Forms
         }
 
         /// <summary>
-        /// Событие нажатия на кнопку "Генерировать"
-        /// </summary>
-        /// <param name="sender">Отправитель события</param>
-        /// <param name="e">Аргументы</param>
-        private void ButtonGenerateTupplesClick(object sender, EventArgs e)
-        {
-            try
-            {
-                // Установить картежи
-                SetTupples();
-            }
-            catch (Exception)
-            {
-                ShowError(Resources.OcceredUnclownExceptionErrorMessage);
-            }
-        }
-
-        /// <summary>
         ///  Событие нажатия на кнопку "Рассчитать"
         /// </summary>
         /// <param name="sender">Отправитель события</param>
@@ -239,24 +221,6 @@ namespace Mps.Forms
             {
                 // Выход
                 Close();
-            }
-            catch (Exception)
-            {
-                ShowError(Resources.OcceredUnclownExceptionErrorMessage);
-            }
-        }
-
-        /// <summary>
-        /// Событие выбора пункта меню "Команда" - "Сгенерировать"
-        /// </summary>
-        /// <param name="sender">Отправитель события</param>
-        /// <param name="e">Аргументы</param>
-        private void GenerateToolStripMenuItemClick(object sender, EventArgs e)
-        {
-            try
-            {
-                // Установить картежи
-                SetTupples();
             }
             catch (Exception)
             {
@@ -514,59 +478,6 @@ namespace Mps.Forms
             // Очистить приоритеты
             Generator.Clear();
 
-            // Количество кортежей
-            var tupplesCount = numericUpDownG.Value;
-
-            // Заполнить приоритеты
-            Generator.Fill((int) tupplesCount);
-
-            // Рассортировать приоритеты
-            if (checkBoxRandomK.Checked)
-            {
-                Generator.DeSort();
-            }
-
-            // Заполнить таблицу картежей
-            for (var i = 0; i < tupplesCount; i++)
-            {
-                var lamdaCurrent = 0.0;
-                var muCurrent = 0.0;
-
-                // Если отмечена случайная генерация интенсивностей
-                if (checkBoxRandomTupples.Checked)
-                {
-                    // Генерировать положительное число (0 < число < 10) и округлить до двух знаков после запятой
-                    while (lamdaCurrent <= 0)
-                    {
-                        lamdaCurrent = Math.Round(_random.NextDouble() * _random.Next(10), 2);
-                    }
-
-                    // Генерировать положительное число (0 < число < 10) и округлить до двух знаков после запятой
-                    while (muCurrent <= 0)
-                    {
-                        muCurrent = Math.Round(_random.NextDouble() * _random.Next(10), 2);
-                    }
-                }
-                // Иначе
-                else
-                {
-                    // Интенсивность потока задач растёт последовательно на единицу
-                    lamdaCurrent = i + 1;
-
-                    // Интенсивность обслуживания равна единице
-                    muCurrent = 1;
-                }
-
-                // Вычислить значение загрузки процессора
-                var omegaCurrent = Calculator.CalculateOmega(lamdaCurrent, muCurrent);
-
-                // Значение приоритета
-                var kCurrent = Generator.GetByIndex(i);
-
-                // Добавить кортеж
-                tupplesTable.Rows.Add(lamdaCurrent, muCurrent, omegaCurrent, kCurrent);
-            }
-
             // Установить нумерацию строк
             SetRowNumbers();
 
@@ -592,7 +503,7 @@ namespace Mps.Forms
         private void SetAllowToAddRows()
         {
             // Установить возможно ли редактирование на основе количества строк в таблице
-            tupplesTable.AllowUserToAddRows = tupplesTable.RowCount < numericUpDownG.Maximum;
+            tupplesTable.AllowUserToAddRows = tupplesTable.RowCount < 1024;
         }
 
         /// <summary>
@@ -676,6 +587,12 @@ namespace Mps.Forms
             // Установить нумерацию строк
             SetRowNumbers();
 
+            // Суммы значений
+            sumLabel.Text = "Суммы: " +
+                             $"P = {rows.Sum(r => r.P).ToString("N6")}, " +
+                             $"C = {rows.Sum(r => r.C).ToString("N6")}, " +
+                             $"A = {rows.Sum(r => r.A).ToString("N6")}";
+
             // Отрисовать
             Draw();
         }
@@ -716,8 +633,6 @@ namespace Mps.Forms
                 var fileModel = new FileModel
                 {
                     N = (int)numericUpDownN.Value,
-                    IsRandomTupples = checkBoxRandomTupples.Checked,
-                    IsRandomPriority = checkBoxRandomK.Checked,
                     UseGammaFunction = checkBoxOverGammaFunction.Checked,
                     Rows = GetRows()
                 };
@@ -743,9 +658,6 @@ namespace Mps.Forms
 
                 // Установить значения настроек
                 numericUpDownN.Value = fileModel.N;
-                numericUpDownG.Value = fileModel.Rows.Count;
-                checkBoxRandomTupples.Checked = fileModel.IsRandomTupples;
-                checkBoxRandomK.Checked = fileModel.IsRandomPriority;
                 checkBoxOverGammaFunction.Checked = fileModel.UseGammaFunction;
                 checkBoxOverGammaFunction.Checked = fileModel.UseGammaFunction;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Mps.Models;
 
 namespace Mps.Services
@@ -32,7 +33,7 @@ namespace Mps.Services
             // Для всех строк
             for (var counter = 0; counter < rows.Count; counter++)
             {
-                // Текщая строка
+                // Текущая строка
                 var row = rows[counter];
 
                 // Омега
@@ -42,7 +43,7 @@ namespace Mps.Services
                 double prevC = 0;
                 for (var i = 0; i < counter ; i++)
                 {
-                    prevC += rows[counter - 1].C;
+                    prevC += rows[i].C;
                 }
 
                 // N - C
@@ -63,11 +64,21 @@ namespace Mps.Services
                 // Значение P
                 row.P = numerator / denominator;
 
-                // Значение С
-                row.C = omega * (1 - row.P);
+                // Установка значений с учетом превышения 1 на текущем шаге
+                if (rows.Sum(r => r.P) >= 1)
+                {
+                    row.P = 0;
+                    row.C = 0;
+                    row.A = 0;
+                }
+                else
+                {
+                    // Значение С
+                    row.C = omega * (1 - row.P);
 
-                // Значение A
-                row.A = (1 - row.P) * row.Lamda;
+                    // Значение A
+                    row.A = (1 - row.P) * row.Lamda;
+                }
             }
         }
 
@@ -89,7 +100,7 @@ namespace Mps.Services
             }
 
             // Для N - C предыдущей строки сложить
-            for (var i = 0; i <= nMisusPrevC; i++)
+            for (var i = 0; i <= Math.Ceiling(nMisusPrevC); i++)
             {
                 // Числитель
                 var stepResultNumerator = Math.Pow(omega, i);

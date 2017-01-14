@@ -1,9 +1,0 @@
-C:\Projects\Mps\bin\Debug\Mps.exe.config
-C:\Projects\Mps\bin\Debug\Mps.exe
-C:\Projects\Mps\bin\Debug\Mps.pdb
-C:\Projects\Mps\obj\Debug\Mps.Forms.MpsForm.resources
-C:\Projects\Mps\obj\Debug\Mps.Properties.Resources.resources
-C:\Projects\Mps\obj\Debug\Mps.csproj.GenerateResource.Cache
-C:\Projects\Mps\obj\Debug\Mps.exe
-C:\Projects\Mps\obj\Debug\Mps.pdb
-C:\Projects\Mps\obj\Debug\Mps.csprojResolveAssemblyReference.cache

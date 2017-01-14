@@ -1,8 +1,0 @@
-C:\Projects\Mps\bin\Release\Mps.exe.config
-C:\Projects\Mps\bin\Release\Mps.exe
-C:\Projects\Mps\bin\Release\Mps.pdb
-C:\Projects\Mps\obj\Release\Mps.Forms.MpsForm.resources
-C:\Projects\Mps\obj\Release\Mps.Properties.Resources.resources
-C:\Projects\Mps\obj\Release\Mps.csproj.GenerateResource.Cache
-C:\Projects\Mps\obj\Release\Mps.exe
-C:\Projects\Mps\obj\Release\Mps.pdb

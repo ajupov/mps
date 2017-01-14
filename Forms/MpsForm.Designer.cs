@@ -40,15 +40,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MpsForm));
             this.labelN = new System.Windows.Forms.Label();
             this.tupplesTable = new System.Windows.Forms.DataGridView();
-            this.labelG = new System.Windows.Forms.Label();
-            this.buttonGenerateTupples = new System.Windows.Forms.Button();
+            this.lamda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.omega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.k = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.p = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.c = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.a = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxTupples = new System.Windows.Forms.GroupBox();
-            this.groupBoxParameters = new System.Windows.Forms.GroupBox();
-            this.checkBoxRandomTupples = new System.Windows.Forms.CheckBox();
-            this.checkBoxRandomK = new System.Windows.Forms.CheckBox();
-            this.numericUpDownG = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownN = new System.Windows.Forms.NumericUpDown();
             this.groupBoxCalculate = new System.Windows.Forms.GroupBox();
+            this.sumLabel = new System.Windows.Forms.Label();
             this.buttonClear = new System.Windows.Forms.Button();
             this.checkBoxOverGammaFunction = new System.Windows.Forms.CheckBox();
             this.buttonCalculate = new System.Windows.Forms.Button();
@@ -60,24 +62,14 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearTableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.groupBoxChart = new System.Windows.Forms.GroupBox();
-            this.lamda = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.omega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.k = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.p = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.c = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.a = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tupplesTable)).BeginInit();
             this.groupBoxTupples.SuspendLayout();
-            this.groupBoxParameters.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN)).BeginInit();
             this.groupBoxCalculate.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -144,24 +136,100 @@
             this.tupplesTable.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.TupplesTableUserAddedRow);
             this.tupplesTable.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.TupplesTableUserDeletedRow);
             // 
-            // labelG
+            // lamda
             // 
-            this.labelG.AutoSize = true;
-            this.labelG.Location = new System.Drawing.Point(6, 62);
-            this.labelG.Name = "labelG";
-            this.labelG.Size = new System.Drawing.Size(113, 13);
-            this.labelG.TabIndex = 4;
-            this.labelG.Text = "Количество задач, g:";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N8";
+            this.lamda.DefaultCellStyle = dataGridViewCellStyle2;
+            this.lamda.HeaderText = "Интенсивность входного потока, λ";
+            this.lamda.MaxInputLength = 16;
+            this.lamda.Name = "lamda";
+            this.lamda.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.lamda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // buttonGenerateTupples
+            // mu
             // 
-            this.buttonGenerateTupples.Location = new System.Drawing.Point(186, 59);
-            this.buttonGenerateTupples.Name = "buttonGenerateTupples";
-            this.buttonGenerateTupples.Size = new System.Drawing.Size(97, 23);
-            this.buttonGenerateTupples.TabIndex = 1;
-            this.buttonGenerateTupples.Text = "Сгенерировать";
-            this.buttonGenerateTupples.UseVisualStyleBackColor = true;
-            this.buttonGenerateTupples.Click += new System.EventHandler(this.ButtonGenerateTupplesClick);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N8";
+            this.mu.DefaultCellStyle = dataGridViewCellStyle3;
+            this.mu.HeaderText = "Интенсивность обслуживания, μ";
+            this.mu.MaxInputLength = 16;
+            this.mu.Name = "mu";
+            this.mu.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.mu.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.mu.Width = 90;
+            // 
+            // omega
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle4.Format = "N8";
+            dataGridViewCellStyle4.NullValue = null;
+            this.omega.DefaultCellStyle = dataGridViewCellStyle4;
+            this.omega.HeaderText = "Число занятых процессоров, ω";
+            this.omega.MaxInputLength = 16;
+            this.omega.Name = "omega";
+            this.omega.ReadOnly = true;
+            this.omega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.omega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.omega.Width = 90;
+            // 
+            // k
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "D";
+            this.k.DefaultCellStyle = dataGridViewCellStyle5;
+            this.k.HeaderText = "Приоритет, k";
+            this.k.MaxInputLength = 16;
+            this.k.Name = "k";
+            this.k.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.k.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.k.Width = 70;
+            // 
+            // p
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle6.Format = "N8";
+            dataGridViewCellStyle6.NullValue = null;
+            this.p.DefaultCellStyle = dataGridViewCellStyle6;
+            this.p.HeaderText = "Вероятность приостановки обслуживания, P";
+            this.p.MaxInputLength = 16;
+            this.p.Name = "p";
+            this.p.ReadOnly = true;
+            this.p.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.p.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.p.Width = 90;
+            // 
+            // c
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle7.Format = "N8";
+            dataGridViewCellStyle7.NullValue = null;
+            this.c.DefaultCellStyle = dataGridViewCellStyle7;
+            this.c.HeaderText = "Среднее число процессоров, C";
+            this.c.MaxInputLength = 16;
+            this.c.Name = "c";
+            this.c.ReadOnly = true;
+            this.c.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.c.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.c.Width = 90;
+            // 
+            // a
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.Format = "N8";
+            dataGridViewCellStyle8.NullValue = null;
+            this.a.DefaultCellStyle = dataGridViewCellStyle8;
+            this.a.HeaderText = "Пропускная способность, A";
+            this.a.MaxInputLength = 16;
+            this.a.Name = "a";
+            this.a.ReadOnly = true;
+            this.a.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.a.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.a.Width = 90;
             // 
             // groupBoxTupples
             // 
@@ -174,63 +242,6 @@
             this.groupBoxTupples.TabIndex = 8;
             this.groupBoxTupples.TabStop = false;
             this.groupBoxTupples.Text = "Наборы";
-            // 
-            // groupBoxParameters
-            // 
-            this.groupBoxParameters.Controls.Add(this.checkBoxRandomTupples);
-            this.groupBoxParameters.Controls.Add(this.checkBoxRandomK);
-            this.groupBoxParameters.Controls.Add(this.numericUpDownG);
-            this.groupBoxParameters.Controls.Add(this.buttonGenerateTupples);
-            this.groupBoxParameters.Controls.Add(this.labelG);
-            this.groupBoxParameters.Location = new System.Drawing.Point(12, 29);
-            this.groupBoxParameters.Name = "groupBoxParameters";
-            this.groupBoxParameters.Size = new System.Drawing.Size(293, 94);
-            this.groupBoxParameters.TabIndex = 9;
-            this.groupBoxParameters.TabStop = false;
-            this.groupBoxParameters.Text = "Параметры";
-            // 
-            // checkBoxRandomTupples
-            // 
-            this.checkBoxRandomTupples.AutoSize = true;
-            this.checkBoxRandomTupples.Location = new System.Drawing.Point(9, 16);
-            this.checkBoxRandomTupples.Name = "checkBoxRandomTupples";
-            this.checkBoxRandomTupples.Size = new System.Drawing.Size(245, 17);
-            this.checkBoxRandomTupples.TabIndex = 10;
-            this.checkBoxRandomTupples.Text = "Случайное распределение интенсивностей";
-            this.checkBoxRandomTupples.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRandomK
-            // 
-            this.checkBoxRandomK.AutoSize = true;
-            this.checkBoxRandomK.Location = new System.Drawing.Point(9, 36);
-            this.checkBoxRandomK.Name = "checkBoxRandomK";
-            this.checkBoxRandomK.Size = new System.Drawing.Size(227, 17);
-            this.checkBoxRandomK.TabIndex = 9;
-            this.checkBoxRandomK.Text = "Случайное распределение приоритетов";
-            this.checkBoxRandomK.UseVisualStyleBackColor = true;
-            // 
-            // numericUpDownG
-            // 
-            this.numericUpDownG.Location = new System.Drawing.Point(123, 60);
-            this.numericUpDownG.Maximum = new decimal(new int[] {
-            1024,
-            0,
-            0,
-            0});
-            this.numericUpDownG.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownG.Name = "numericUpDownG";
-            this.numericUpDownG.Size = new System.Drawing.Size(59, 20);
-            this.numericUpDownG.TabIndex = 8;
-            this.numericUpDownG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.numericUpDownG.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
             // 
             // numericUpDownN
             // 
@@ -258,17 +269,26 @@
             // 
             // groupBoxCalculate
             // 
+            this.groupBoxCalculate.Controls.Add(this.sumLabel);
             this.groupBoxCalculate.Controls.Add(this.buttonClear);
             this.groupBoxCalculate.Controls.Add(this.checkBoxOverGammaFunction);
             this.groupBoxCalculate.Controls.Add(this.buttonCalculate);
             this.groupBoxCalculate.Controls.Add(this.labelN);
             this.groupBoxCalculate.Controls.Add(this.numericUpDownN);
-            this.groupBoxCalculate.Location = new System.Drawing.Point(311, 29);
+            this.groupBoxCalculate.Location = new System.Drawing.Point(12, 29);
             this.groupBoxCalculate.Name = "groupBoxCalculate";
-            this.groupBoxCalculate.Size = new System.Drawing.Size(388, 94);
+            this.groupBoxCalculate.Size = new System.Drawing.Size(687, 94);
             this.groupBoxCalculate.TabIndex = 10;
             this.groupBoxCalculate.TabStop = false;
             this.groupBoxCalculate.Text = "Рассчёт";
+            // 
+            // sumLabel
+            // 
+            this.sumLabel.AutoSize = true;
+            this.sumLabel.Location = new System.Drawing.Point(90, 64);
+            this.sumLabel.Name = "sumLabel";
+            this.sumLabel.Size = new System.Drawing.Size(0, 13);
+            this.sumLabel.TabIndex = 17;
             // 
             // buttonClear
             // 
@@ -365,26 +385,17 @@
             // commandToolStripMenuItem
             // 
             this.commandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.generateToolStripMenuItem,
             this.calculateToolStripMenuItem,
             this.clearTableToolStripMenuItem});
             this.commandToolStripMenuItem.Name = "commandToolStripMenuItem";
             this.commandToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.commandToolStripMenuItem.Text = "Команда";
             // 
-            // generateToolStripMenuItem
-            // 
-            this.generateToolStripMenuItem.Name = "generateToolStripMenuItem";
-            this.generateToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G)));
-            this.generateToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.generateToolStripMenuItem.Text = "Сгенерировать";
-            this.generateToolStripMenuItem.Click += new System.EventHandler(this.GenerateToolStripMenuItemClick);
-            // 
             // calculateToolStripMenuItem
             // 
             this.calculateToolStripMenuItem.Name = "calculateToolStripMenuItem";
             this.calculateToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T)));
-            this.calculateToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.calculateToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.calculateToolStripMenuItem.Text = "Рассчитать";
             this.calculateToolStripMenuItem.Click += new System.EventHandler(this.CalculateToolStripMenuItemClick);
             // 
@@ -392,7 +403,7 @@
             // 
             this.clearTableToolStripMenuItem.Name = "clearTableToolStripMenuItem";
             this.clearTableToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.clearTableToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.clearTableToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.clearTableToolStripMenuItem.Text = "Очистить";
             this.clearTableToolStripMenuItem.Click += new System.EventHandler(this.ClearTableToolStripMenuItemClick);
             // 
@@ -431,101 +442,6 @@
             this.groupBoxChart.TabStop = false;
             this.groupBoxChart.Text = "График";
             // 
-            // lamda
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N8";
-            this.lamda.DefaultCellStyle = dataGridViewCellStyle2;
-            this.lamda.HeaderText = "Интенсивность входного потока, λ";
-            this.lamda.MaxInputLength = 16;
-            this.lamda.Name = "lamda";
-            this.lamda.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.lamda.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // mu
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N8";
-            this.mu.DefaultCellStyle = dataGridViewCellStyle3;
-            this.mu.HeaderText = "Интенсивность обслуживания, μ";
-            this.mu.MaxInputLength = 16;
-            this.mu.Name = "mu";
-            this.mu.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.mu.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.mu.Width = 90;
-            // 
-            // omega
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle4.Format = "N8";
-            dataGridViewCellStyle4.NullValue = null;
-            this.omega.DefaultCellStyle = dataGridViewCellStyle4;
-            this.omega.HeaderText = "Загрузка процессора, ω";
-            this.omega.MaxInputLength = 16;
-            this.omega.Name = "omega";
-            this.omega.ReadOnly = true;
-            this.omega.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.omega.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.omega.Width = 70;
-            // 
-            // k
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "D";
-            this.k.DefaultCellStyle = dataGridViewCellStyle5;
-            this.k.HeaderText = "Приоритет, k";
-            this.k.MaxInputLength = 16;
-            this.k.Name = "k";
-            this.k.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.k.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.k.Width = 70;
-            // 
-            // p
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle6.Format = "N8";
-            dataGridViewCellStyle6.NullValue = null;
-            this.p.DefaultCellStyle = dataGridViewCellStyle6;
-            this.p.HeaderText = "Вероятность приостановки обслуживания, P";
-            this.p.MaxInputLength = 16;
-            this.p.Name = "p";
-            this.p.ReadOnly = true;
-            this.p.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.p.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.p.Width = 90;
-            // 
-            // c
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle7.Format = "N8";
-            dataGridViewCellStyle7.NullValue = null;
-            this.c.DefaultCellStyle = dataGridViewCellStyle7;
-            this.c.HeaderText = "Среднее число процессоров, C";
-            this.c.MaxInputLength = 16;
-            this.c.Name = "c";
-            this.c.ReadOnly = true;
-            this.c.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.c.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.c.Width = 90;
-            // 
-            // a
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle8.Format = "N8";
-            dataGridViewCellStyle8.NullValue = null;
-            this.a.DefaultCellStyle = dataGridViewCellStyle8;
-            this.a.HeaderText = "Пропускная способность, A";
-            this.a.MaxInputLength = 16;
-            this.a.Name = "a";
-            this.a.ReadOnly = true;
-            this.a.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.a.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.a.Width = 90;
-            // 
             // MpsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -533,7 +449,6 @@
             this.ClientSize = new System.Drawing.Size(1124, 463);
             this.Controls.Add(this.groupBoxChart);
             this.Controls.Add(this.groupBoxCalculate);
-            this.Controls.Add(this.groupBoxParameters);
             this.Controls.Add(this.groupBoxTupples);
             this.Controls.Add(this.menuStrip);
             this.DoubleBuffered = true;
@@ -546,9 +461,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MpsFormFormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.tupplesTable)).EndInit();
             this.groupBoxTupples.ResumeLayout(false);
-            this.groupBoxParameters.ResumeLayout(false);
-            this.groupBoxParameters.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownN)).EndInit();
             this.groupBoxCalculate.ResumeLayout(false);
             this.groupBoxCalculate.PerformLayout();
@@ -565,14 +477,8 @@
 
         private System.Windows.Forms.Label labelN;
         private System.Windows.Forms.DataGridView tupplesTable;
-        private System.Windows.Forms.Label labelG;
-        private System.Windows.Forms.Button buttonGenerateTupples;
         private System.Windows.Forms.GroupBox groupBoxTupples;
-        private System.Windows.Forms.GroupBox groupBoxParameters;
-        private System.Windows.Forms.NumericUpDown numericUpDownG;
         private System.Windows.Forms.NumericUpDown numericUpDownN;
-        private System.Windows.Forms.CheckBox checkBoxRandomK;
-        private System.Windows.Forms.CheckBox checkBoxRandomTupples;
         private System.Windows.Forms.GroupBox groupBoxCalculate;
         private System.Windows.Forms.Button buttonCalculate;
         private System.Windows.Forms.MenuStrip menuStrip;
@@ -582,7 +488,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveFileAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commandToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearTableToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem generateToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem calculateToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -592,6 +497,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.GroupBox groupBoxChart;
+        private System.Windows.Forms.Label sumLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn lamda;
         private System.Windows.Forms.DataGridViewTextBoxColumn mu;
         private System.Windows.Forms.DataGridViewTextBoxColumn omega;
